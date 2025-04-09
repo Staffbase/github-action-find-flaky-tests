@@ -30,6 +30,9 @@ runs:
   steps:
     - name: Setup Python
       uses: actions/setup-python@v5
+      with:
+        cache: 'pip'
+        python-version-file: '${{ github.action_path }}/.python-version'
 
     - name: Install python dependencies
       shell: bash

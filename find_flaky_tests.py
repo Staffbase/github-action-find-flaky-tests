@@ -66,7 +66,7 @@ def parse_args() -> AppState:
     parser = argparse.ArgumentParser(description='Find all occurrences of annotations in a GitHub repo.', add_help=True,
                                      exit_on_error=True)
     parser.add_argument('--auth-token', type=str, help='GitHub auth token (required)', required=True)
-    parser.add_argument('--slack-channel', metavar="CHANNEL",
+    parser.add_argument('--slack-channel', type=str,
                         help='Format output for posting in Slack to given channel')
     parser.add_argument('--prefix', type=str, help='prefix to filter annotations by', required=True)
     parser.add_argument('--since', type=str,
