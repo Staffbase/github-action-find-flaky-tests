@@ -20,11 +20,11 @@ inputs:
   prefix:
     required: true
     type: string
-  secrets:
-    slack-incoming-webhooks-url:
-      required: true
-    token:
-      required: true
+secrets:
+  slack-incoming-webhooks-url:
+    required: true
+  token:
+    required: true
 
 runs:
   using: "composite"
