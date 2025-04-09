@@ -37,6 +37,9 @@ runs:
     - name: Install python dependencies
       shell: bash
       run: |
+        pwd
+        ls -la
+        echo "Installing dependencies from ${{ github.action_path }}/requirements.txt"
         python -m pip install -r ${{ github.action_path }}/requirements.txt
 
     - name: Find flaky tests and write to result file
