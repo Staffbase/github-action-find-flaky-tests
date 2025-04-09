@@ -44,7 +44,7 @@ runs:
 
     - name: Find flaky tests and write to result file
       run: |
-        python find_flaky_tests.py --slack-channel ${{ inputs.slack-channel-id }} --auth-token "${{ intputs.token }}" --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} > flaky_tests.json
+        python find_flaky_tests.py --slack-channel ${{ inputs.slack-channel-id }} --auth-token "${{ secrets.token }}" --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} > flaky_tests.json
 
     - name: Post message to ${{ inputs.slack-channel-name }} Slack channel
       if: success()
