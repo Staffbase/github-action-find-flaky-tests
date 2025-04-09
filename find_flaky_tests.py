@@ -158,8 +158,8 @@ def print_for_slack(occurrences: List[Occurrence], state: AppState):
         count = len(occrs)
         content += f"{count}x `{nice_path}`"
         occrs.sort(key=lambda o: o.commit.timestamp, reverse=True)
-        most_recent_occr = occrs[0]
-        content += f" <{most_recent_occr.check_url}|link>"
+        recent_occrs = occrs[:10]
+        content += " ".join([f"<{occr.check_url}|[{i+1}]>" for i, occr in enumerate(recent_occrs)])
         content += '\\n'
 
     header = render_msg_header(state)
