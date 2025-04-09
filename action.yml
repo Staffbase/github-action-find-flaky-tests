@@ -34,14 +34,12 @@ runs:
     - name: Install python dependencies
       shell: bash
       run: |
-        pwd
-        ls -la
-        python -m pip install -r requirements.txt
+        python -m pip install -r ${{ github.action_path }}/requirements.txt
 
     - name: Find flaky tests and write to result file
       shell: bash
       run: |
-        python find_flaky_tests.py \
+        python ${{ github.action_path }}/find_flaky_tests.py \
             --slack-channel ${{ inputs.slack-channel-id }} \
             --auth-token "${{ inputs.token }}" \
             --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} \
