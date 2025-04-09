@@ -26,7 +26,7 @@ jobs:
           repository: 'Staffbase/test-flaky'
           # optional: name of the branch where it should check, default: main
           branch: 'master'
-          # optional: prefix of the test run, default: 'test'
+          # prefix of the test run
           prefix: 'test-'
           # URL of the Slack incoming webhooks
           slack-incoming-webhooks-url: ${{ secrets.SLACK_INCOMING_WEBHOOKS_URL }}
