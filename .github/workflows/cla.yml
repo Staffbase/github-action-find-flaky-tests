@@ -24,4 +24,4 @@ jobs:
           path-to-document: "https://github.com/Staffbase/github-action-find-flaky-tests/blob/main/CLA.md"
           # branch should not be protected
           branch: "signatures"
-          allowlist: 0x46616c6b,flaxel,bot*
+          allowlist: 0x46616c6b,flaxel,MarvinZeising,bot*
