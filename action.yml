@@ -30,16 +30,14 @@ runs:
   steps:
     - name: Setup Python
       uses: actions/setup-python@v5
+      working-directory: ${{ github.action_path }}
       with:
         cache: 'pip'
-        python-version-file: '${{ github.action_path }}/.python-version'
+        python-version-file: '.python-version'
 
     - name: Install python dependencies
       shell: bash
       run: |
-        pwd
-        ls -la
-        echo "Installing dependencies from ${{ github.action_path }}/requirements.txt"
         python -m pip install -r ${{ github.action_path }}/requirements.txt
 
     - name: Find flaky tests and write to result file
