@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: github-action-jira-release-tagging
+  annotations:
+    github.com/project-slug: Staffbase/github-action-jira-release-tagging
+  tags:
+    - python
+spec:
+  type: service
+  lifecycle: production
