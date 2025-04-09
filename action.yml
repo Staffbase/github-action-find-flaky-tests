@@ -28,12 +28,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        fetch-tags: false
-
     - name: Setup Python
       uses: actions/setup-python@v5
 
@@ -45,9 +39,11 @@ runs:
     - name: Find flaky tests and write to result file
       shell: bash
       run: |
-        python find_flaky_tests.py --slack-channel ${{ inputs.slack-channel-id }} --auth-token "${{ env.TOKEN }}" --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} > flaky_tests.json
-      env:
-        TOKEN: ${{ inputs.token }}
+        python find_flaky_tests.py \
+            --slack-channel ${{ inputs.slack-channel-id }} \
+            --auth-token "${{ inputs.token }}" \
+            --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} \
+            > flaky_tests.json
 
     - name: Post message to ${{ inputs.slack-channel-name }} Slack channel
       if: success()
