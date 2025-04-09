@@ -20,7 +20,6 @@ inputs:
   prefix:
     required: true
     type: string
-secrets:
   slack-incoming-webhooks-url:
     required: true
   token:
@@ -48,14 +47,14 @@ runs:
       run: |
         python find_flaky_tests.py --slack-channel ${{ inputs.slack-channel-id }} --auth-token "${{ env.TOKEN }}" --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} > flaky_tests.json
       env:
-        TOKEN: ${{ secrets.token }}
+        TOKEN: ${{ inputs.token }}
 
     - name: Post message to ${{ inputs.slack-channel-name }} Slack channel
       if: success()
       uses: slackapi/slack-github-action@v2.0.0
       with:
         payload-file-path: './flaky_tests.json'
-        webhook: ${{ secrets.slack-incoming-webhooks-url }}
+        webhook: ${{ inputs.slack-incoming-webhooks-url }}
         webhook-type: incoming-webhook
 
 branding:
