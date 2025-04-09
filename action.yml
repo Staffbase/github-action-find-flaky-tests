@@ -12,7 +12,7 @@ inputs:
   repository:
     required: false
     type: string
-    default: Staffbase/${{ github.event.repository.name }}
+    default: ${{ github.event.repository.full_name }}
   branch:
     required: false
     type: string
@@ -22,6 +22,8 @@ inputs:
     type: string
   secrets:
     slack-incoming-webhooks-url:
+      required: true
+    token:
       required: true
 
 runs:
@@ -42,7 +44,7 @@ runs:
 
     - name: Find flaky tests and write to result file
       run: |
-        python find_flaky_tests.py --slack-channel ${{ inputs.slack-channel-id }} --auth-token "${{ secrets.GITHUB_TOKEN }}" --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} > flaky_tests.json
+        python find_flaky_tests.py --slack-channel ${{ inputs.slack-channel-id }} --auth-token "${{ intputs.token }}" --prefix ${{ inputs.prefix }} ${{ inputs.repository }} ${{ inputs.branch }} > flaky_tests.json
 
     - name: Post message to ${{ inputs.slack-channel-name }} Slack channel
       if: success()
