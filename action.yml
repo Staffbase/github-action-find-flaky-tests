@@ -34,6 +34,8 @@ runs:
     - name: Install python dependencies
       shell: bash
       run: |
+        pwd
+        ls -la
         python -m pip install -r requirements.txt
 
     - name: Find flaky tests and write to result file
