@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: github-action-find-flaky-tests
+  annotations:
+    github.com/project-slug: Staffbase/github-action-find-flaky-tests
+  tags:
+    - python
+spec:
+  type: service
+  lifecycle: production
