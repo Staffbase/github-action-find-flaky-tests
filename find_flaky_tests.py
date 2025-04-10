@@ -6,6 +6,7 @@ from dateutil.parser import parse
 from github import Auth, Repository
 from github import Github
 from typing import Dict, List
+import json as json_lib
 
 MAX_FILENAME_LENGTH = 60
 
@@ -120,53 +121,66 @@ def render_msg_header(state: AppState) -> str:
 
 
 def print_for_slack(occurrences: List[Occurrence], state: AppState):
-    json = """
-    {
-        "channel": "@CHANNEL@",
-        "text": "Flaky Tests Summary",
-        "blocks": [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "@HEADER@"
-                }
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Top failed runs (limit=@LIMIT@):\\n@CONTENT@"
-                }
-            }
-        ]
-    }
-    """
-
     occurrences_by_ann_path: Dict[str, List[Occurrence]] = {}
     for o in occurrences:
         occurrences_by_ann_path.setdefault(o.annotation_path, []).append(o)
     items = [i for i in occurrences_by_ann_path.items()]
     items.sort(key=lambda i: len(i[1]), reverse=True)  # sort by number of occurrences, highest first
 
-    limit = 12  # limit to 12 items, to avoid running into issues with Slack API (limit 3000 chars)
+    limit = 12
     items = items[:limit]
 
-    content = ""
-    for ann_path, occrs in items:
-        nice_path = truncate_left(ann_path, MAX_FILENAME_LENGTH)
-        count = len(occrs)
-        content += f"{count}x `{nice_path}`"
-        occrs.sort(key=lambda o: o.commit.timestamp, reverse=True)
-        recent_occrs = occrs[:10]
-        content += " ".join([f"<{occr.check_url}|{i+1}> " for i, occr in enumerate(recent_occrs)])
-        content += '\\n'
+    # Chunk results so that individual message blocks do not exceed the 3000 character limit from Slack API
+    chunk_size=5
+    chunks = [items[i:i+chunk_size] for i in range(0, len(items), chunk_size)]
 
-    header = render_msg_header(state)
-    json = json.replace("@HEADER@", header)
-    json = json.replace("@LIMIT@", str(limit))
-    json = json.replace("@CHANNEL@", state.slack_channel)
-    json = json.replace("@CONTENT@", content)
+    content_blocks = []
+
+    for chunk in chunks:
+        content = ""
+        for ann_path, occrs in chunk:
+            nice_path = truncate_left(ann_path, MAX_FILENAME_LENGTH)
+            count = len(occrs)
+            content += f"{count}x `{nice_path}` "
+            occrs.sort(key=lambda o: o.commit.timestamp, reverse=True)
+            recent_occrs = occrs[:5]
+            content += " ".join([f"<{occr.check_url}|{i+1}> " for i, occr in enumerate(recent_occrs)])
+            content += '\n'
+
+        content_blocks += [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": content,
+                }
+            }
+        ]
+
+
+    data = {
+        "channel": state.slack_channel,
+        "text": "Flaky Tests Summary",
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": render_msg_header(state),
+                }
+            },
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": f"Top {len(items)} failed runs (limit={limit})",
+                }
+            }
+        ] + content_blocks
+    }
+
+    json = json_lib.dumps(data, indent=4)
+
     print(json)
 
 
