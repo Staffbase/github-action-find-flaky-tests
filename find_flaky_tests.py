@@ -153,7 +153,8 @@ def print_for_slack(occurrences: List[Occurrence], state: AppState):
                 "text": {
                     "type": "mrkdwn",
                     "text": content,
-                }
+                },
+                "expand": True,
             }
         ]
 
