@@ -31,6 +31,7 @@ class AppState:
     repo: str
     branch: str
     slack_channel: str | None
+    path_suffixes: tuple[str, ...] | None
     prefix: str | None
     since: datetime | None
     until: datetime | None
@@ -54,6 +55,14 @@ def parse_datetime(s):
     else:
         return datetime.strptime(s, '%Y-%m-%d')
 
+# parse_suffixes_tuple is used to parse the suffixes argument from CLI
+# example: ".spec.ts,.spec.tsx,.test.ts,test.tsx" -> ('.spec.ts', '.spec.tsx', '.test.ts', 'test.tsx')
+def parse_suffixes_tuple(s: str | None) -> tuple[str, ...] | None:
+    if s is None:
+        return None
+    else:
+        return tuple(item.strip() for item in s.split(','))
+
 
 def validate_and_split_repo(repo: str) -> (str, str):
     if '/' not in repo:
@@ -69,6 +78,7 @@ def parse_args() -> AppState:
     parser.add_argument('--auth-token', type=str, help='GitHub auth token (required)', required=True)
     parser.add_argument('--slack-channel', type=str,
                         help='Format output for posting in Slack to given channel')
+    parser.add_argument('--path-suffixes', type=str, help='file path suffixes to filter annotations by. Could be tuple ".spec.ts,.spec.tsx,.test.ts,.test.tsx"',)
     parser.add_argument('--prefix', type=str, help='prefix to filter annotations by', required=True)
     parser.add_argument('--since', type=str,
                         help='date to start from, format YYYY-MM-DD defaults to start of day (midnight UTC), '
@@ -91,6 +101,7 @@ def parse_args() -> AppState:
             since=parse_since(args.since),
             until=parse_until(args.until),
             slack_channel=args.slack_channel,
+            path_suffixes=parse_suffixes_tuple(args.path_suffixes),
             prefix=args.prefix
         )
     except Exception as e:
@@ -221,6 +232,9 @@ def list_occurrences(state: AppState, r: Repository) -> List[Occurrence]:
                 if ann.path == '.github':
                     continue
                 # filter out build errors or other issues, which are not flaky tests
+                # filter out annotations that do not match the given suffixes in the file path
+                if state.path_suffixes and not ann.path.endswith(tuple(state.path_suffixes)):
+                    continue
                 if not ann.message.startswith(state.prefix):
                     continue
                 # annotation path contains something like ".../packageA/TestA.xml" or ".../packageB/TestB.kt"

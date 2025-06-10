@@ -17,6 +17,9 @@ inputs:
     required: false
     type: string
     default: 'main'
+  path-suffixes:
+    required: false
+    type: string
   prefix:
     required: true
     type: string
@@ -45,6 +48,7 @@ runs:
             --slack-channel "${{ inputs.slack-channel-id }}" \
             --auth-token "${{ inputs.token }}" \
             --prefix "${{ inputs.prefix }}" \
+            --path-suffixes "${{ inputs.path-suffixes }}" \
             ${{ inputs.repository }} \
             ${{ inputs.branch }} \
             > flaky_tests.json
