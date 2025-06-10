@@ -31,7 +31,7 @@ class AppState:
     repo: str
     branch: str
     slack_channel: str | None
-    path_suffixes: tuple[str] | None
+    path_suffixes: tuple[str, ...] | None
     prefix: str | None
     since: datetime | None
     until: datetime | None
@@ -57,7 +57,7 @@ def parse_datetime(s):
 
 # parse_suffixes_tuple is used to parse the suffixes argument from CLI
 # example: ".spec.ts,.spec.tsx,.test.ts,test.tsx" -> ('.spec.ts', '.spec.tsx', '.test.ts', 'test.tsx')
-def parse_suffixes_tuple(s: str | None) -> tuple | None:
+def parse_suffixes_tuple(s: str | None) -> tuple[str, ...] | None:
     if s is None:
         return None
     else:
