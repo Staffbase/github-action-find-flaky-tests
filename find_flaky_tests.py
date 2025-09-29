@@ -239,6 +239,10 @@ def list_occurrences(state: AppState, r: Repository) -> List[Occurrence]:
                     continue
                 # annotation path contains something like ".../packageA/TestA.xml" or ".../packageB/TestB.kt"
                 occr = Occurrence(digest, cr.html_url, ann.path)
+
+                # skip duplicates, if one file has multiple annotations
+                if len(occurrences) > 0 and occurrences[-1] == occr:
+                    continue
                 occurrences.append(occr)
     return occurrences
 
