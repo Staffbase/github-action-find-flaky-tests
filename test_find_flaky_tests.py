@@ -125,7 +125,7 @@ def test_format_failing_item():
     stats = compute_test_stats(occurrences, runs)
     by_path = {s.path: s for s in stats}
     result = format_failing_item(by_path["TestA.spec.ts"])
-    assert "5x" in result
+    assert "*5x*" in result
     assert "100%" in result
     assert "TestA.spec.ts" in result
 
@@ -135,8 +135,9 @@ def test_format_flaky_item():
     stats = compute_test_stats(occurrences, runs)
     by_path = {s.path: s for s in stats}
     result = format_flaky_item(by_path["TestB.spec.ts"])
-    assert "40%" in result
+    assert "*40%*" in result
     assert "2 flips / 5 runs" in result
+    assert "·" in result  # dot separators
     assert "TestB.spec.ts" in result
     # Should contain compact Slack timeline emoji
     assert "🔴" in result

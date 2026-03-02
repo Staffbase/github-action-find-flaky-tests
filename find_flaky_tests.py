@@ -356,18 +356,28 @@ def render_slack_list(title: str, items: List[FileStats], formatter) -> List[dic
 
 
 def format_failing_item(s: FileStats) -> str:
+    """Format a single failing test for Slack output.
+
+    Example: *5x* (100%) `e2e/checkout.spec.ts`  1 2 3 4 5
+    """
     nice_path = truncate_left(s.path, MAX_FILENAME_LENGTH)
     recent = sorted(s.recent_occurrences, key=lambda o: o.commit.timestamp, reverse=True)[:5]
     links = " ".join([f"<{o.check_url}|{i + 1}>" for i, o in enumerate(recent)])
-    return f"{s.fail_count}x ({s.fail_rate:.0%}) `{nice_path}` {links}".rstrip()
+    return f"*{s.fail_count}x* ({s.fail_rate:.0%}) `{nice_path}`  {links}".rstrip()
 
 
 def format_flaky_item(s: FileStats) -> str:
+    """Format a single flaky test for Slack output.
+
+    Example:
+    *29%* flaky · 3 flips / 10 runs · `src/auth/login.spec.ts`
+    🔴🟢🔴🔴🟢🔴🟢🟢🔴🟢
+    """
     nice_path = truncate_left(s.path, MAX_FILENAME_LENGTH)
     timeline = render_timeline_slack(s.run_timeline)
     return (
-        f"{s.fail_after_pass_rate:.0%} flaky ({s.fail_after_pass} flips / {s.total_runs} runs) "
-        f"`{nice_path}`\n    {timeline}"
+        f"*{s.fail_after_pass_rate:.0%}* flaky · {s.fail_after_pass} flips / {s.total_runs} runs · "
+        f"`{nice_path}`\n{timeline}"
     )
 
 

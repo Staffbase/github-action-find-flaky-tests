@@ -51,6 +51,11 @@ Each flaky test shows a compact timeline stripe (oldest → newest):
 - When there are more than 30 data points, runs are grouped into 30 equal-sized buckets
 - A label like _(100 runs)_ is shown when bucketing is active
 
+### Documentation
+
+- [Flakiness Detection — How It Works](docs/flakiness_detection.md)
+- [Slack Output Example](docs/slack_output_example.md)
+
 ## Release 🔖
 
 To create a new release just use [this page][release-new] and publish the draft release.
