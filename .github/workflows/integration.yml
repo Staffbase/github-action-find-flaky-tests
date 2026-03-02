@@ -4,6 +4,27 @@ on:
   pull_request:
 
 jobs:
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: python -m pytest test_find_flaky_tests.py -v
+
   dependabot:
     name: Auto Merge (Dependabot)
     uses: Staffbase/gha-workflows/.github/workflows/template_automerge_dependabot.yml@v9.2.0

@@ -36,6 +36,21 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+## Output
+
+The summary includes two ranked lists (top 10 by default):
+
+- **Most failing tests**: ranked by failure count — how often a test path appears in failure annotations within the time window. Shows count and failure rate.
+- **Most flaky tests**: ranked by fail-after-pass rate — how often a test flips from green → red within the same check name. Each flaky test includes a visual timeline stripe showing pass/fail history.
+
+### Timeline visualization
+
+Each flaky test shows a compact timeline stripe (oldest → newest):
+
+- 🟢 = mostly passing, 🔴 = mostly failing, 🟡 = mixed results
+- When there are more than 30 data points, runs are grouped into 30 equal-sized buckets
+- A label like _(100 runs)_ is shown when bucketing is active
+
 ## Release 🔖
 
 To create a new release just use [this page][release-new] and publish the draft release.
