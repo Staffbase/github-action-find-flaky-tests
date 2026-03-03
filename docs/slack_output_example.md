@@ -24,24 +24,24 @@ This is how the Slack message renders. Use this for your screenshot.
 **🔄 Top 6 flaky tests — green → red flips (limit=10)**
 
   25% flaky (20 flips / 80 runs) `src/modules/auth/login.spec.ts`
-  🟢🟡🟡🟡🟢🟡🟡🟡🟢🟡🟡🟡🔴🟡🟡🟡🟡🟡🟢🟡🟡🟢🟡🟡🟢🟢🟡🟢🟡🟡 _(80 runs)_
+  🟩🟨🟨🟨🟩🟨🟨🟨🟩🟨🟨🟨🟥🟨🟨🟨🟨🟨🟩🟨🟨🟩🟨🟨🟩🟩🟨🟩🟨🟨 _(80 runs)_
 
   24% flaky (19 flips / 80 runs) `src/modules/search/search-results.spec.ts`
-  🔴🟡🟡🔴🟡🟡🟢🟢🟡🟢🟡🟡🟡🟡🔴🟡🟡🟡🟡🔴🟢🟡🟡🟡🟢🟡🟡🟢🟡🟡 _(80 runs)_
+  🟥🟨🟨🟥🟨🟨🟩🟩🟨🟩🟨🟨🟨🟨🟥🟨🟨🟨🟨🟥🟩🟨🟨🟨🟩🟨🟨🟩🟨🟨 _(80 runs)_
 
   19% flaky (15 flips / 80 runs) `src/components/navigation/sidebar.spec.ts`
-  🟡🟡🟢🟡🟢🟡🟡🟡🟡🟡🟡🟡🟡🟢🟢🟢🟡🟡🟡🟢🟡🟢🟡🟢🟡🟢🟢🟢🟢🟡 _(80 runs)_
+  🟨🟨🟩🟨🟩🟨🟨🟨🟨🟨🟨🟨🟨🟩🟩🟩🟨🟨🟨🟩🟨🟩🟨🟩🟨🟩🟩🟩🟩🟨 _(80 runs)_
 
   10% flaky (8 flips / 80 runs) `src/components/dashboard/widget.spec.tsx`
-  🟡🟢🟡🔴🟢🟢🟢🟢🟡🟡🟡🟢🟢🟡🟢🟢🟢🟢🟢🟡🟡🟢🟢🟢🟢🟢🟢🟢🟢🟡 _(80 runs)_
+  🟨🟩🟨🟥🟩🟩🟩🟩🟨🟨🟨🟩🟩🟨🟩🟩🟩🟩🟩🟨🟨🟩🟩🟩🟩🟩🟩🟩🟩🟨 _(80 runs)_
 
   1% flaky (1 flips / 80 runs) `src/modules/settings/profile.spec.tsx`
-  🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟡🟢🟢🟢🟢🟡🟢🟢 _(80 runs)_
+  🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟩🟩🟩🟩🟨🟩🟩 _(80 runs)_
 
   0% flaky (0 flips / 80 runs) `e2e/flows/checkout.spec.ts`
-  🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴 _(80 runs)_
+  🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥 _(80 runs)_
 
-> **Legend:** 🟢 = mostly pass · 🔴 = mostly fail · 🟡 = mixed (oldest → newest)
+> **Legend:** 🟩 = mostly pass · 🟥 = mostly fail · 🟨 = mixed (oldest → newest)
 
 ---
 
@@ -86,7 +86,7 @@ This is how the Slack message renders. Use this for your screenshot.
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": ":arrows_counterclockwise: Top 6 flaky tests \u2014 green \u2192 red flips (limit=10)\n25% flaky (20 flips / 80 runs) `src/modules/auth/login.spec.ts`\n    \ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udd34\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1 _(80 runs)_\n24% flaky (19 flips / 80 runs) `src/modules/search/search-results.spec.ts`\n    \ud83d\udd34\ud83d\udfe1\ud83d\udfe1\ud83d\udd34\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udd34\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udd34\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1 _(80 runs)_\n19% flaky (15 flips / 80 runs) `src/components/navigation/sidebar.spec.ts`\n    \ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1 _(80 runs)_\n10% flaky (8 flips / 80 runs) `src/components/dashboard/widget.spec.tsx`\n    \ud83d\udfe1\ud83d\udfe2\ud83d\udfe1\ud83d\udd34\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1 _(80 runs)_\n1% flaky (1 flips / 80 runs) `src/modules/settings/profile.spec.tsx`\n    \ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe2\ud83d\udfe1\ud83d\udfe2\ud83d\udfe2 _(80 runs)_\n"
+                "text": ":arrows_counterclockwise: Top 6 flaky tests \u2014 green \u2192 red flips (limit=10)\n25% flaky (20 flips / 80 runs) `src/modules/auth/login.spec.ts`\n    \ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe5\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8 _(80 runs)_\n24% flaky (19 flips / 80 runs) `src/modules/search/search-results.spec.ts`\n    \ud83d\udfe5\ud83d\udfe8\ud83d\udfe8\ud83d\udfe5\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe5\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe5\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8 _(80 runs)_\n19% flaky (15 flips / 80 runs) `src/components/navigation/sidebar.spec.ts`\n    \ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8 _(80 runs)_\n10% flaky (8 flips / 80 runs) `src/components/dashboard/widget.spec.tsx`\n    \ud83d\udfe8\ud83d\udfe9\ud83d\udfe8\ud83d\udfe5\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8 _(80 runs)_\n1% flaky (1 flips / 80 runs) `src/modules/settings/profile.spec.tsx`\n    \ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe9\ud83d\udfe8\ud83d\udfe9\ud83d\udfe9 _(80 runs)_\n"
             },
             "expand": true
         },
@@ -94,7 +94,7 @@ This is how the Slack message renders. Use this for your screenshot.
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": ":arrows_counterclockwise: Top 6 flaky tests \u2014 green \u2192 red flips (limit=10) (cont.)\n0% flaky (0 flips / 80 runs) `e2e/flows/checkout.spec.ts`\n    \ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34\ud83d\udd34 _(80 runs)_\n"
+                "text": ":arrows_counterclockwise: Top 6 flaky tests \u2014 green \u2192 red flips (limit=10) (cont.)\n0% flaky (0 flips / 80 runs) `e2e/flows/checkout.spec.ts`\n    \ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5\ud83d\udfe5 _(80 runs)_\n"
             },
             "expand": true
         }

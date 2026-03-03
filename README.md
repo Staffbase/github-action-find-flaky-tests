@@ -47,7 +47,7 @@ The summary includes two ranked lists (top 10 by default):
 
 Each flaky test shows a compact timeline stripe (oldest → newest):
 
-- 🟢 = mostly passing, 🔴 = mostly failing, 🟡 = mixed results
+- 🟩 = mostly passing, 🟥 = mostly failing, 🟨 = mixed results
 - When there are more than 30 data points, runs are grouped into 30 equal-sized buckets
 - A label like _(100 runs)_ is shown when bucketing is active
 

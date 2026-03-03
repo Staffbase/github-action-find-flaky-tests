@@ -77,12 +77,12 @@ Each flaky test includes a **visual timeline stripe** showing its pass/fail hist
 
 ```
 29% flaky · 2 flips / 7 runs · login.spec.ts
-🔴🟢🔴🔴🟢🔴🟢
+🟥🟩🟥🟥🟩🟥🟩
 ```
 
 When there are more than 30 data points, runs are **bucketed** into 30 columns. Each column shows the dominant result of its group:
 
-- 🟢 = mostly passing (≤30% failures in bucket)
-- 🔴 = mostly failing (≥70% failures in bucket)
-- 🟡 = mixed results (30–70% failures in bucket)
+- 🟩 = mostly passing (≤30% failures in bucket)
+- 🟥 = mostly failing (≥70% failures in bucket)
+- 🟨 = mixed results (30–70% failures in bucket)
 

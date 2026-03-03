@@ -139,9 +139,9 @@ def test_format_flaky_item():
     assert "2 flips / 5 runs" in result
     assert "·" in result  # dot separators
     assert "TestB.spec.ts" in result
-    # Should contain compact Slack timeline emoji
-    assert "🔴" in result
-    assert "🟢" in result
+    # Should contain compact Slack timeline square emoji
+    assert "🟥" in result
+    assert "🟩" in result
 
 
 def test_print_summary_for_humans(capsys):
@@ -180,7 +180,7 @@ def test_render_timeline_slack():
         RunResult(datetime(2025, 6, 1, 3), "u3", "ci", True),
     ]
     result = render_timeline_slack(tl)
-    assert result == "🔴🟢🔴"
+    assert result == "🟥🟩🟥"
 
 
 def test_render_timeline_empty():
@@ -336,8 +336,8 @@ def test_render_timeline_slack_bucketed():
         for i in range(60)
     ]
     result = render_timeline_slack(tl)
-    # Count emoji characters (🔴, 🟢, 🟡)
-    emoji_count = sum(1 for c in result if c in "🔴🟢🟡")
+    # Count emoji characters (🟥, 🟩, 🟨)
+    emoji_count = sum(1 for c in result if c in "🟥🟩🟨")
     assert emoji_count == MAX_TIMELINE_WIDTH
     # Should show total run count
     assert "(60 runs)" in result
@@ -351,11 +351,11 @@ def test_render_timeline_slack_no_label_when_small():
     ]
     result = render_timeline_slack(tl)
     assert "runs)" not in result
-    assert result == "🟢🟢🟢🟢🟢"
+    assert result == "🟩🟩🟩🟩🟩"
 
 
 def test_render_timeline_slack_yellow_mixed():
-    """Buckets with ~50/50 pass/fail should show yellow 🟡."""
+    """Buckets with ~50/50 pass/fail should show yellow 🟨."""
     # 60 runs alternating fail/pass → each 2-run bucket has 1 fail + 1 pass = 0.5 ratio → yellow
     base = datetime(2025, 6, 1)
     tl = [
@@ -363,7 +363,7 @@ def test_render_timeline_slack_yellow_mixed():
         for i in range(60)
     ]
     result = render_timeline_slack(tl)
-    assert "🟡" in result
+    assert "🟨" in result
 
 
 if __name__ == "__main__":

@@ -243,10 +243,13 @@ def render_timeline_human(timeline: List[RunResult]) -> str:
 
 
 def render_timeline_slack(timeline: List[RunResult]) -> str:
-    """Render a compact pass/fail stripe for Slack using small emoji.
+    """Render a compact pass/fail stripe for Slack using square emoji.
+
+    Square emoji (🟩🟥🟨) tile together without gaps, producing a denser
+    color bar than circle emoji.
 
     If timeline has more entries than MAX_TIMELINE_WIDTH, runs are bucketed.
-    Each column shows: 🟢 (mostly pass), 🔴 (mostly fail), 🟡 (mixed).
+    Each column shows: 🟩 (mostly pass), 🟥 (mostly fail), 🟨 (mixed).
     """
     buckets = _bucket_timeline(timeline, MAX_TIMELINE_WIDTH)
     if not buckets:
@@ -254,11 +257,11 @@ def render_timeline_slack(timeline: List[RunResult]) -> str:
     chars = []
     for ratio in buckets:
         if ratio >= 0.7:
-            chars.append("🔴")
+            chars.append("🟥")
         elif ratio <= 0.3:
-            chars.append("🟢")
+            chars.append("🟩")
         else:
-            chars.append("🟡")
+            chars.append("🟨")
     label = ""
     if len(timeline) > MAX_TIMELINE_WIDTH:
         label = f" _({len(timeline)} runs)_"
@@ -371,7 +374,7 @@ def format_flaky_item(s: FileStats) -> str:
 
     Example:
     *29%* flaky · 3 flips / 10 runs · `src/auth/login.spec.ts`
-    🔴🟢🔴🔴🟢🔴🟢🟢🔴🟢
+    🟥🟩🟥🟥🟩🟥🟩🟩🟥🟩
     """
     nice_path = truncate_left(s.path, MAX_FILENAME_LENGTH)
     timeline = render_timeline_slack(s.run_timeline)
