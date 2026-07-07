@@ -6,9 +6,9 @@ on:
 jobs:
   dependabot:
     name: Auto Merge (Dependabot)
-    uses: Staffbase/gha-workflows/.github/workflows/template_automerge_dependabot.yml@v13.4.1
+    uses: Staffbase/gha-workflows/.github/workflows/template_automerge_dependabot.yml@v14.1.0
     with:
       force: true
     secrets:
-      app_id: ${{ vars.STAFFBASE_ACTIONS_APP_ID }}
+      client-id: ${{ vars.STAFFBASE_ACTIONS_CLIENT_ID }}
       private_key: ${{ secrets.STAFFBASE_ACTIONS_PRIVATE_KEY }}
